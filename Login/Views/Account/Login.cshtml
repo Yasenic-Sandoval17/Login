@@ -1,0 +1,29 @@
+﻿@using Login.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Iniciar sesión";
+    Layout = "";
+}
+
+<link rel="stylesheet" href="~/Content/login.css" />
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <h2 class="active"> Iniciar Sesion </h2>
+
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <img src="https://www.flaticon.es/svg/static/icons/svg/1651/1651324.svg" id="icon" alt="User Icon" />
+        </div>
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+        <!-- Login Form -->
+        <form>
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder="Correo Electronico" })
+            @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @id = "password", @name = "login", @placeholder = "Contraseña" })
+            <input type="submit" class="fadeIn fourth" value="Iniciar">
+        </form>
+}
+    </div>
+</div>
